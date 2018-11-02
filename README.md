@@ -6,12 +6,12 @@ The task to implement the library in ASP.NET MVC<br/>
 <i>Publisher</i><br/>
 Name: string<br/>
 
-Author<br/>
+<i>Author</i><br/>
 Name: string<br/>
 DateOfBirth: Date<br/>
 DateOfDeath: Date?<br/>
 
-Book<br/>
+<i>Book</i><br/>
 Id: int<br/>
 Name: string<br/>
 Publisher: Publisher<br/>
