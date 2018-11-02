@@ -3,7 +3,7 @@
 The task to implement the library in ASP.NET MVC<br/>
 
 <b>Main classes:</b><br/>
-Publisher<br/>
+<i>Publisher</i><br/>
 Name: string<br/>
 
 Author<br/>
