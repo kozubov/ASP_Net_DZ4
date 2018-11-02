@@ -1,0 +1,44 @@
+﻿@model ASP_4.Models.ModelPublisher
+@using ASP_4.Models
+@{
+    Layout = null;
+    Publisher pub = ViewBag.Publisher;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://fonts.googleapis.com/css?family=Cuprum:400,400i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/Style.css" />
+    <title>Edit Publisher</title>
+</head>
+<body>
+    <div class="title_form">
+        <h1>Edit Publisher</h1>
+    </div>
+    <div class="form_user">
+        @using (Html.BeginForm())
+        {
+            if (pub != null)
+            {
+                @Html.ValidationSummary()
+                <div class="section">
+                    <p>Name:</p>
+                    <div class="Text">@Html.TextBox("Name", pub.Name)</div>
+                </div>
+                <input class="button" type="submit" name="@pub.Id" value="Save"/>
+            }
+        }
+    </div>
+<div class="menu">
+    @Html.ActionLink("Add Publisher", "Index")
+    @Html.ActionLink("Publisher List", "Show_Table")
+    @Html.RouteLink("Add Author", new { controller = "Author", action = "Index" })
+    @Html.RouteLink("Authors List", new { controller = "Author", action = "Show_Table" })
+    @Html.RouteLink("Add Book", new { controller = "Book", action = "Index" })
+    @Html.RouteLink("Book List", new { controller = "Book", action = "Show_Table" })
+</div>
+</body>
+</html>

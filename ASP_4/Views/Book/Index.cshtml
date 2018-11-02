@@ -1,0 +1,82 @@
+﻿@model ASP_4.Models.ModelBook
+
+@{
+    Layout = null;
+    IEnumerable<SelectListItem> radio = ViewBag.Radio;
+    IEnumerable<SelectListItem> Check = ViewBag.Check;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://fonts.googleapis.com/css?family=Cuprum:400,400i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/Style.css" />
+    <title>Add Book</title>
+</head>
+<body>
+    <div class="title_form">
+        <h1>Add Book</h1>
+    </div>
+    <div class="form_user">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary()
+            <div class="section">
+                <p>Name</p>
+                <div class="Text">@Html.TextBoxFor(x => x.Name)</div>
+            </div>
+            if (radio.ToList().Count != 0)
+            {
+                <div class="section">
+                    <p>Select Publisher:</p>
+                    <div class="Text">
+                        @foreach (var VARIABLE in radio)
+                        {
+                            <input type="radio" name="RadioCheck" value="@VARIABLE.Value" />@VARIABLE.Text
+                        }
+                    </div>
+                </div>
+            }
+            if (Check.ToList().Count != 0)
+            {
+                <div class="section">
+                    <p>Select Author:</p>
+                    <div class="Text">
+                        @foreach (var item in Check)
+                        {
+                            <label>
+                                <input type="checkbox" name="SelectedCheck" value="@item.Value" /> @item.Text
+                            </label>
+                        }
+                    </div>
+                </div>
+            }
+            <div class="section">
+                <p>Publishing Date:</p>
+                <div class="Text">@Html.TextBoxFor(x => x.PublishingDate)</div>
+            </div>
+            <div class="section">
+                <p>Page Count:</p>
+                <div class="Text">@Html.TextBoxFor(x => x.PageCount)</div>
+            </div>
+            <div class="section">
+                <p>ISBN:</p>
+                <div class="Text">@Html.TextBoxFor(x => x.ISBN)</div>
+            </div>
+            <div class="button">
+                <input type="submit" value="Add" />
+             </div>
+                }
+            </div>
+<div class="menu">
+    @Html.RouteLink("Add Publisher", new { controller = "Home", action = "Index" })
+    @Html.RouteLink("Publisher List", new { controller = "Home", action = "Show_Table" })
+    @Html.RouteLink("Add Author", new { controller = "Author", action = "Index" })
+    @Html.RouteLink("Author List", new { controller = "Author", action = "Show_Table" })
+    @Html.ActionLink("Add Book", "Index")
+    @Html.ActionLink("Book List", "Show_Table")
+</div>
+</body>
+</html>

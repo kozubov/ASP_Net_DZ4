@@ -1,0 +1,103 @@
+﻿@model ASP_4.Models.ModelBook
+@using ASP_4.Models
+@{
+    Layout = null;
+    Book book = ViewBag.Book;
+    IEnumerable<SelectListItem> radio = ViewBag.Radio;
+    IEnumerable<SelectListItem> check = ViewBag.Check;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://fonts.googleapis.com/css?family=Cuprum:400,400i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/Style.css" />
+    <title>Edit Book</title>
+</head>
+<body>
+    <div class="title_form">
+        <h1>Edit Book</h1>
+    </div>
+<div class="form_user">
+    @if (book != null)
+    {
+        using (Html.BeginForm())
+        {
+
+            @Html.ValidationSummary()
+            <div class="section">
+                <p>Title:</p>
+                <div class="Text">@Html.TextBox("Name", book.Name)</div>
+            </div>
+            if (radio.ToList().Count != 0)
+            {
+                <div class="section">
+                    <p>Please Select Publisher:</p>
+                    <div class="radio">
+                        @foreach (var VARIABLE in radio)
+                        {
+                            if (VARIABLE.Selected)
+                            {
+                                <input type="radio" name="RadioCheck" checked="checked" value="@VARIABLE.Value"/>@VARIABLE.Text
+                            }
+                            else
+                            {
+                                <input type="radio" name="RadioCheck" value="@VARIABLE.Value"/>@VARIABLE.Text
+                            }
+                        }
+                    </div>
+                </div>
+            }
+            if (check.ToList().Count != 0)
+            {
+                <div class="section">
+                    <p>Select Author:</p>
+                    @foreach (var item in check)
+                    {
+                        <div class="radio">
+                            <label>
+                                @if (item.Selected)
+                                {
+                                    <input type="checkbox" name="SelectedCheck" checked="checked" value="@item.Value"/>
+                                    @item.Text
+                                }
+                                else
+                                {
+                                    <input type="checkbox" name="SelectedCheck" value="@item.Value"/>
+                                    @item.Text
+                                }
+                            </label>
+                        </div>
+                    }
+                </div>
+            }
+            <div class="section">
+                <p>Date Of Publishing:</p>
+                <div class="Text">@Html.TextBox("PublishingDate", book.PublishingDate.ToString("MM/dd/yyyy"))</div>
+            </div>
+            <div class="section">
+                <p>Page Count:</p>
+                <div class="Text">@Html.TextBox("PageCount", book.PageCount.ToString())</div>
+            </div>
+            <div class="section">
+                <p>ISBN:</p>
+                <div class="Text">@Html.TextBox("ISBN", book.ISBN)</div>
+            </div>
+            <div class="button">
+                <input type="submit" name="@book.Id" value="Save"/>
+            </div>
+        }
+    }
+</div>
+<div class="menu">
+    @Html.RouteLink("Add Publisher", new {controller = "Home", action = "Index"})
+    @Html.RouteLink("Publisher List", new {controller = "Home", action = "Show_Table"})
+    @Html.RouteLink("Add Author", new {controller = "Author", action = "Index"})
+    @Html.RouteLink("Author List", new {controller = "Author", action = "Show_Table"})
+    @Html.ActionLink("Add Book", "Index")
+    @Html.ActionLink("Book List", "Show_Table")
+</div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+﻿@using ASP_4.Models
+@model ASP_4.Models.ModelAuthor
+@{
+    Layout = null;
+    Author author = ViewBag.Author;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://fonts.googleapis.com/css?family=Cuprum:400,400i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/Style.css" />
+    <title>Edit Author</title>
+</head>
+<body>
+    <div class="form_user">
+        @using (Html.BeginForm())
+        {
+            <div class="title_form">
+                <h1>Edit Author</h1>
+            </div>
+            @Html.ValidationSummary()
+            if (author != null)
+            {
+                <div class="section">
+                    <p>Name:</p>
+                    <div class="Text">@Html.TextBox("Name", author.Name)</div>
+                </div>
+                <div class="section">
+                    <p>Date Of Birth:</p>
+                    <div class="Text">@Html.TextBox("DateOfBirth", author.DateOfBirth.ToString("MM/dd/yyyy"))</div>
+                </div>
+                <div class="section">
+                    <p>Date Of Death:</p>
+                    @if (author.DateOfDeath.ToString("MM/dd/yyyy") != "01.01.0001")
+                    {
+                        <div class="Text">@Html.TextBox("DateOfDeath", author.DateOfDeath.ToString("MM/dd/yyyy"))</div>
+                    }
+                    else
+                    {
+                        <div class="Text">@Html.TextBoxFor(x => x.DateOfDeath)</div>
+                    }
+                </div>
+                <div class="button">
+                    <input type="submit" name="@author.Id" value="Save" />
+                </div>
+                    }
+
+                    }
+                </div>
+                <div class="menu">
+                    @Html.RouteLink("Add Publisher", new { controller = "Home", action = "Index" })
+                    @Html.RouteLink("Publisher List", new { controller = "Home", action = "Show_Table" })
+                    @Html.ActionLink("Add Author", "Index")
+                    @Html.ActionLink("Author List", "Show_Table")
+                    @Html.RouteLink("Add Book", new { controller = "Book", action = "Index" })
+                    @Html.RouteLink("Book List", new { controller = "Book", action = "Show_Table" })
+                </div>
+</body>
+</html>

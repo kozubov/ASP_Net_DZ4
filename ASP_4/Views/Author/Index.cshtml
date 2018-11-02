@@ -1,0 +1,49 @@
+﻿@model ASP_4.Models.ModelAuthor
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://fonts.googleapis.com/css?family=Cuprum:400,400i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/Style.css" />
+    <title>Add Author</title>
+</head>
+<body>
+    <div class="form_user">
+        @using (Html.BeginForm())
+        {
+            <div class="title_form">
+                <h1>Create Author</h1>
+            </div>
+            @Html.ValidationSummary()
+            <div class="section">
+                <p>Name:</p>
+                <div class="Text">@Html.TextBoxFor(x => x.Name)</div>
+            </div>
+            <div class="section">
+                <p>Date Of Birth:</p>
+                <div class="Text">@Html.TextBoxFor(x => x.DateOfBirth)</div>
+            </div>
+            <div class="section">
+                <p>Date Of Death:</p>
+                <div class="Text">@Html.TextBoxFor(x => x.DateOfDeath)</div>
+            </div>
+            <div class="button">
+                <input type="submit" value="Add" />
+            </div>
+                }
+            </div>
+            <div class="menu">
+                @Html.RouteLink("Add Publisher", new { controller = "Home", action = "Index" })
+                @Html.RouteLink("Publisher List", new { controller = "Home", action = "Show_Table" })
+                @Html.ActionLink("Add Author", "Index")
+                @Html.ActionLink("Author List", "Show_Table")
+                @Html.RouteLink("Add Book", new { controller = "Book", action = "Index" })
+                @Html.RouteLink("Book List", new { controller = "Book", action = "Show_Table" })
+            </div>
+</body>
+</html>

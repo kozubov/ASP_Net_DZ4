@@ -1,0 +1,33 @@
+﻿@using ASP_4.Helpers
+@using ASP_4.Models
+@{
+    Layout = null;
+    List<Publisher> list = ViewBag.TablePublishers;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://fonts.googleapis.com/css?family=Cuprum:400,400i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/Style.css" />
+    <title>Publisher List</title>
+</head>
+<body>
+    <div class="title_form">
+        <h1>Publisher List</h1>
+    </div>
+<div class="div_table">
+    @Html.PublishTable(list)
+</div>
+<div class="menu">
+    @Html.ActionLink("Add Publisher", "Index")
+    @Html.ActionLink("Publisher List", "Show_Table")
+    @Html.RouteLink("Add Author", new { controller = "Author", action = "Index" })
+    @Html.RouteLink("Authors List", new { controller = "Author", action = "Show_Table" })
+    @Html.RouteLink("Add Book", new { controller = "Book", action = "Index" })
+    @Html.RouteLink("Book List", new { controller = "Book", action = "Show_Table" })
+</div>
+</body>
+</html>
