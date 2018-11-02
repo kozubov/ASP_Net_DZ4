@@ -2,7 +2,7 @@
 
 The task to implement the library in ASP.NET MVC<br/>
 
-Main classes:<br/>
+<b>Main classes:</b><br/>
 Publisher<br/>
 Name: string<br/>
 
